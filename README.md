@@ -2,7 +2,7 @@
 
 Autor: José Rodríguez
 Rol: Desarrollador Frontend
-Duración estimada: 3 días
+Duración estimada: 1 día
 Framework principal: React con Vite
 
 ---
