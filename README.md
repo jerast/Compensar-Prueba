@@ -44,17 +44,19 @@ El objetivo principal es implementar la interfaz a partir del diseño en Figma, 
 
 Endpoints principales:
 
-| Método | Endpoint    | Descripción          |
-|:------:|-------------|----------------------|
-| POST   | /login      | Inicio de sesión     |
-| POST   | /register   | Registro de usuario  |
-| POST   | /survey     | Envío de encuestas   |
-| GET    | /user/{id}  | Obtener usuario por ID |
-| GET    | /           | Ruta principal       |
+| Método | Endpoint   | Descripción            |
+| :----: | ---------- | ---------------------- |
+|  POST  | /login     | Inicio de sesión       |
+|  POST  | /register  | Registro de usuario    |
+|  POST  | /survey    | Envío de encuestas     |
+|  GET   | /user/{id} | Obtener usuario por ID |
+|  GET   | /          | Ruta principal         |
 
 ### Instalación y ejecución
 
-1) Clonar el repositorio
+1. Clonar el repositorio
+
 ```bash
 git clone https://github.com/jerast/Compensar-Prueba.git
 cd Compensar-Prueba
+```
