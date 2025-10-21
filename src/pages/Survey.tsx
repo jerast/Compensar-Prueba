@@ -28,6 +28,13 @@ const Survey = () => {
       return;
     }
 
+    // Check if there are changes
+    const isEqual = JSON.stringify(surveyForm) === JSON.stringify(survey);
+    if (isEqual) {
+      toast.error('No has realizado ningún cambio en la encuesta.');
+      return;
+    }
+
     // Prevent multiple submits
     if (isLoading) return;
 
