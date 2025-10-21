@@ -62,11 +62,11 @@
   @apply text-center text-[#B5B5B5] mt-13;
 }
 .auth-form__link {
-	@apply text-compensar font-semibold self-center mt-4  lg:hidden;
+  @apply text-compensar font-semibold self-center mt-4  lg:hidden;
 }
 .auth-form__socials {
   @apply flex justify-center gap-4 mt-11;
 }
 .auth-form__socials button {
-	@apply cursor-pointer;
+  @apply cursor-pointer;
 }
