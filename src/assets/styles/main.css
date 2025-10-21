@@ -89,7 +89,7 @@ body {
 }
 
 .survey {
-  @apply flex items-center justify-center min-h-screen max-w-screen pt-[80px] overflow-x-auto;
+  @apply flex items-center justify-center min-h-screen max-w-screen pt-[80px] lg:pt-0 overflow-x-auto;
 }
 .survey-form {
   @apply bg-white px-8 py-5 w-screen max-w-[400px] lg:max-w-[470px] flex flex-col rounded-3xl shadow-xl shadow-[#00000005];
