@@ -13,7 +13,9 @@ export default defineConfig({
       '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
       '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
       '@pages': fileURLToPath(new URL('./src/pages', import.meta.url)),
-      '@routes': fileURLToPath(new URL('./src/routes', import.meta.url))
+      '@routes': fileURLToPath(new URL('./src/routes', import.meta.url)),
+      '@services': fileURLToPath(new URL('./src/services', import.meta.url)),
+      '@store': fileURLToPath(new URL('./src/store', import.meta.url))
     }
   }
 });
