@@ -17,8 +17,12 @@ const LoginForm = () => {
     });
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
-    <form className="auth-form">
+    <form className="auth-form" onSubmit={handleSubmit}>
       <h2 className="auth-form__title">Iniciar sesión</h2>
 
       {/* Form fields */}
@@ -29,6 +33,7 @@ const LoginForm = () => {
           name="emailOrUser"
           value={LoginForm.emailOrUser}
           onChange={handleChange}
+          required
         />
       </label>
       <label className="auth-form__input my-5">
@@ -38,6 +43,7 @@ const LoginForm = () => {
           name="password"
           value={LoginForm.password}
           onChange={handleChange}
+          required
         />
         <button type="button" onClick={() => setIsPassShow(!isPassShow)}>
           <EyeIcon />

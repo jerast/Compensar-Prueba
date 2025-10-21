@@ -20,8 +20,12 @@ const SignupForm = () => {
     });
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
-    <form className="auth-form">
+    <form className="auth-form" onSubmit={handleSubmit}>
       <h2 className="auth-form__title">Registro</h2>
 
       {/* Form fields */}
@@ -33,6 +37,7 @@ const SignupForm = () => {
           value={LoginForm.email}
           onChange={handleChange}
           autoComplete="email"
+          required
         />
       </label>
       <label className="auth-form__input my-2">
