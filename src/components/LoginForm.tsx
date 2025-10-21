@@ -80,7 +80,7 @@ const LoginForm = () => {
         Iniciar sesión
       </button>
       <Link className="auth-form__link" to="/signup">
-        Registrarte aquí!
+        Regístrate aquí
       </Link>
 
       {/* Socials */}

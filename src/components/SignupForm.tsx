@@ -119,10 +119,10 @@ const SignupForm = () => {
 
       {/* Actions */}
       <button className="auth-form__submit" type="submit" disabled={isLoading}>
-        Iniciar sesión
+        Registrarte
       </button>
       <Link className="auth-form__link" to="/login">
-        Inicia sesión aquí!
+        Inicia sesión
       </Link>
 
       {/* Socials */}
