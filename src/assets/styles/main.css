@@ -9,12 +9,16 @@
   --color-gray: #f3f4f6;
 }
 
+* {
+  @apply select-none;
+}
+
 body {
-  background: #f9f9f9;
+  @apply bg-[#f9f9f9];
 }
 
 .header {
-  @apply absolute flex justify-between p-6 w-screen max-h-[77px];
+  @apply absolute flex justify-between p-6 w-full max-w-screen max-h-[77px];
 }
 .header-user {
   @apply flex items-center gap-3 h-full;
@@ -85,10 +89,10 @@ body {
 }
 
 .survey {
-  @apply flex items-center justify-center min-h-screen w-screen;
+  @apply flex items-center justify-center min-h-screen max-w-screen pt-[80px] overflow-x-auto;
 }
 .survey-form {
-  @apply bg-white px-8 py-5 w-screen max-w-[470px] flex flex-col rounded-3xl shadow-xl shadow-[#00000005];
+  @apply bg-white px-8 py-5 w-screen max-w-[400px] lg:max-w-[470px] flex flex-col rounded-3xl shadow-xl shadow-[#00000005];
 }
 .survey-form__label {
   @apply block font-semibold mb-4 text-sm text-[#6B7280];
