@@ -12,7 +12,7 @@ const Signup = () => {
           <div>
             <h1 className="auth-info__title">Regístrate</h1>
             <span className="auth-info__subtitle">
-              te invitamos a crear <br /> tu cuenta
+              Te invitamos a crear <br /> tu cuenta
             </span>
             <span className="auth-info__description">
               Si ya tienes una cuenta
