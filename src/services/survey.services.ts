@@ -21,14 +21,4 @@ const submitSurvey = async (payload: SurveyPayload) => {
   }
 };
 
-const getUserSurvey = async (user: string) => {
-  try {
-    const { data } = await api.get(`/user/${user}`);
-    return { ok: true, data: data.data };
-  } catch (err: any) {
-    const message = err?.response?.data?.message || err?.message || 'Get survey failed';
-    return { ok: false, message };
-  }
-};
-
 export default submitSurvey;
