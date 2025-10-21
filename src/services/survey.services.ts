@@ -29,6 +29,6 @@ const getUserSurvey = async (user: string) => {
     const message = err?.response?.data?.message || err?.message || 'Get survey failed';
     return { ok: false, message };
   }
-}
+};
 
 export default submitSurvey;

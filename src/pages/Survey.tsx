@@ -33,12 +33,12 @@ const Survey = () => {
 
     // Submit survey
     setIsLoading(true);
-    const response = await submitSurvey({ 
-      user: user?.user, 
-      survey: surveyForm 
+    const response = await submitSurvey({
+      user: user?.user,
+      survey: surveyForm
     });
     setIsLoading(false);
-  
+
     // Handle error response
     if (!response.ok) {
       toast.error(response.message || 'Error al enviar la encuesta');
