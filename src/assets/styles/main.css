@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Poppins', system-ui, sans-serif;
+  --color-compensar: #ff6600;
+  --color-black: #0d0c0c;
+  --color-asabache: #1f2937;
+  --color-gray: #f3f4f6;
+}
+
+.header {
+  @apply p-6 absolute;
+}
+
+.login {
+  @apply flex flex-col lg:flex-row xl:gap-[5vw] place-content-center items-center h-screen overflow-hidden;
+}
+
+.login-info {
+  @apply flex text-black mt-[50px] lg:mt-[12%];
+}
+.login-info__title {
+  @apply text-5xl font-semibold block;
+}
+.login-info__subtitle {
+  @apply hidden lg:block text-4xl font-medium mt-5;
+}
+.login-info__description {
+  @apply hidden lg:inline text-base leading-8;
+}
+.login-info__link {
+  @apply hidden lg:inline font-semibold text-compensar;
+}
+.login-info__img {
+  @apply hidden lg:block w-64 lg:w-80 mt-28;
+}
+
+.login-form {
+  @apply flex flex-col w-[370px];
+}
+.login-form__title {
+  @apply font-medium mb-3 text-center text-2xl mt-7
+	lg:text-left lg:text-3xl lg:mb-0;
+}
+.login-form__input {
+  @apply relative block my-5;
+}
+.login-form__input input {
+  @apply text-[15px] text-asabache border-none rounded-lg px-5 w-full h-[62px] outline-compensar bg-gray;
+}
+.login-form__input button {
+  @apply absolute top-1/2 right-5 -translate-y-1/2;
+}
+.login-form__action {
+  @apply text-sm text-[#B0B0B0] self-end;
+}
+.login-form__submit {
+  @apply bg-compensar text-white font-semibold rounded-lg py-3 mt-12  h-14 cursor-pointer shadow-[0px_4px_61px_0px_#4D47C366];
+}
+.login-form__span {
+  @apply text-center text-[#B5B5B5] mt-13;
+}
+.login-form__link {
+	@apply text-compensar font-semibold self-center mt-4;
+}
+.login-form__socials {
+  @apply flex justify-center gap-4 mt-11;
+}
+.login-form__socials button {
+	@apply cursor-pointer;
+}
