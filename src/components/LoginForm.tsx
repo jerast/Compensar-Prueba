@@ -2,13 +2,18 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Socials from '@components/Socials';
 import EyeIcon from '@assets/icons/eye.svg?react';
+import { login } from '@services/auth.service';
+import { toast } from 'sonner';
+import useAppStore from '@/store/app.store';
 
 const LoginForm = () => {
+  const setLogin = useAppStore((state) => state.login);
+  const [isPassShow, setIsPassShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [LoginForm, setLoginForm] = useState({
     emailOrUser: '',
     password: ''
   });
-  const [isPassShow, setIsPassShow] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginForm({
@@ -17,8 +22,25 @@ const LoginForm = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Prevent multiple submits
+    if (isLoading) return;
+
+    // Submit login
+    setIsLoading(true);
+    const response = await login(LoginForm);
+    setIsLoading(false);
+
+    // Handle error response
+    if (!response.ok) {
+      toast.error(response.message || 'Error al iniciar sesión');
+      return;
+    }
+
+    // Set user in store
+    setLogin(response.data);
   };
 
   return (
@@ -54,7 +76,7 @@ const LoginForm = () => {
       <button className="auth-form__action" type="button">
         Olvidé mi contraseña
       </button>
-      <button className="auth-form__submit" type="submit">
+      <button className="auth-form__submit" type="submit" disabled={isLoading}>
         Iniciar sesión
       </button>
       <Link className="auth-form__link" to="/signup">

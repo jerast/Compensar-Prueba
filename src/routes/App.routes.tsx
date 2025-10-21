@@ -1,9 +1,9 @@
-import { Login, Signup, Survey } from '@/pages';
-import { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { Login, Signup, Survey } from '@/pages';
+import useAppStore from '@/store/app.store';
 
 const AppRoutes = () => {
-  const [isLogged, _] = useState(false);
+  const user = useAppStore((state) => state.user);
 
   const publicRoutes = (
     <Routes>
@@ -16,11 +16,11 @@ const AppRoutes = () => {
   const privateRoutes = (
     <Routes>
       <Route path="/" element={<Survey />} />
-      <Route path="*" element={<h1>404 Not Found</h1>} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 
-  return isLogged ? privateRoutes : publicRoutes;
+  return user ? privateRoutes : publicRoutes;
 };
 
 export default AppRoutes;

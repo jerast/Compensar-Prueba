@@ -15,19 +15,25 @@ type RegisterPayload = {
 export const login = async (payload: LoginPayload) => {
   try {
     const { data } = await api.post('/login', payload);
-    return data;
+    if (!data.data) {
+      return { ok: false, message: data.message };
+    }
+    return { ok: true, data: data.data };
   } catch (err: any) {
     const message = err?.response?.data?.message || err?.message || 'Login failed';
-    throw new Error(message);
+    return { ok: false, message };
   }
 };
 
 export const register = async (payload: RegisterPayload) => {
   try {
     const { data } = await api.post('/register', payload);
-    return data;
+    if (!data.data) {
+      return { ok: false, message: data.message };
+    }
+    return { ok: true, data: data.data };
   } catch (err: any) {
     const message = err?.response?.data?.message || err?.message || 'Register failed';
-    throw new Error(message);
+    return { ok: false, message };
   }
 };

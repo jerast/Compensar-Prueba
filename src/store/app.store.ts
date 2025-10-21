@@ -17,7 +17,7 @@ type AppState = {
   setSurvey: (survey: Survey) => void;
 };
 
-export const useAppStore = create<AppState>()(
+const useAppStore = create<AppState>()(
   persist(
     (set) => ({
       user: null,
@@ -32,3 +32,5 @@ export const useAppStore = create<AppState>()(
     }
   )
 );
+
+export default useAppStore;

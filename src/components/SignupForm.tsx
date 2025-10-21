@@ -1,9 +1,14 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+import { register } from '@/services/auth.service';
 import Socials from '@components/Socials';
 import EyeIcon from '@assets/icons/eye.svg?react';
 
 const SignupForm = () => {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isPassShow, setIsPassShow] = useState(false);
   const [LoginForm, setLoginForm] = useState({
     email: '',
     user: '',
@@ -11,7 +16,6 @@ const SignupForm = () => {
     password: '',
     confirmPassword: ''
   });
-  const [isPassShow, setIsPassShow] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginForm({
@@ -20,8 +24,32 @@ const SignupForm = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Prevent multiple submits
+    if (isLoading) return;
+
+    // Validate password match
+    if (LoginForm.password !== LoginForm.confirmPassword) {
+      toast.error('Las contraseñas no coinciden');
+      return;
+    }
+
+    // Submit registration
+    setIsLoading(true);
+    const response = await register(LoginForm);
+    setIsLoading(false);
+
+    // Handle error response
+    if (!response.ok) {
+      toast.error(response.message || 'Error al iniciar sesión');
+      return;
+    }
+
+    // Successful registration
+    toast.error('Registro exitoso!');
+    navigate('/login');
   };
 
   return (
@@ -80,6 +108,8 @@ const SignupForm = () => {
           type={isPassShow ? 'text' : 'password'}
           placeholder="Confirmar contraseña"
           name="confirmPassword"
+          value={LoginForm.confirmPassword}
+          onChange={handleChange}
           required
         />
         <button type="button" onClick={() => setIsPassShow((prev) => !prev)}>
@@ -88,7 +118,7 @@ const SignupForm = () => {
       </label>
 
       {/* Actions */}
-      <button className="auth-form__submit" type="submit">
+      <button className="auth-form__submit" type="submit" disabled={isLoading}>
         Iniciar sesión
       </button>
       <Link className="auth-form__link" to="/login">
