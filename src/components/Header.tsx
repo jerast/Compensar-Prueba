@@ -9,12 +9,16 @@ const Header = () => {
   return (
     <header className="header">
       <Logo />
-      <div className='header-user'>
-        Hola, {user?.user}
-        <button onClick={logout}>
-          <LogoutIcon />
-        </button>
-      </div>
+      {
+        user && (
+          <div className='header-user'>
+            Hola, {user?.user}
+            <button onClick={logout}>
+              <LogoutIcon />
+            </button>
+          </div>
+        )
+      }
     </header>
   );
 };
