@@ -1,39 +1,52 @@
-import Header from '@/components/Header';
-import { Modal } from '@/components/Modal';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { Modal } from '@/components/Modal';
+import Header from '@/components/Header';
+import submitSurvey from '@/services/survey.services';
+import useAppStore from '@/store/app.store';
 
 const Survey = () => {
+  const user = useAppStore((state) => state.user);
+  const survey = useAppStore((state) => state.survey);
+  const setSurvey = useAppStore((state) => state.setSurvey);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [surveyForm, setSurveyForm] = useState({
-    fecha: '',
-    'Pregunta 1': '',
-    'Pregunta 2': '',
-    'Pregunta 3': '',
-    'Pregunta 4': ''
-  });
+  const [surveyForm, setSurveyForm] = useState(survey);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setSurveyForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (
-      !surveyForm['Pregunta 1'] ||
-      !surveyForm['Pregunta 2'] ||
-      !surveyForm['Pregunta 3'] ||
-      !surveyForm['Pregunta 4']
-    ) {
+    // Check if all questions are answered
+    const isFormFilled = Object.values(surveyForm).every((value) => !!value);
+    if (!isFormFilled) {
       toast.error('Por favor, responde todas las preguntas.');
       return;
     }
 
+    // Prevent multiple submits
+    if (isLoading) return;
+
+    // Submit survey
     setIsLoading(true);
+    const response = await submitSurvey({ 
+      user: user?.user, 
+      survey: surveyForm 
+    });
     setIsLoading(false);
+  
+    // Handle error response
+    if (!response.ok) {
+      toast.error(response.message || 'Error al enviar la encuesta');
+      return;
+    }
+
+    // Set survey in store
+    setSurvey(surveyForm);
     setIsModalOpen(true);
   };
 

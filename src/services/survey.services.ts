@@ -1,18 +1,34 @@
 import api from '@config/axios.config';
 
 type SurveyPayload = {
-  user: string;
-  survey: string;
+  user?: string;
+  survey: {
+    fecha: string;
+    'Pregunta 1': string;
+    'Pregunta 2': string;
+    'Pregunta 3': string;
+    'Pregunta 4': string;
+  };
 };
 
 const submitSurvey = async (payload: SurveyPayload) => {
   try {
     const { data } = await api.post('/survey', payload);
-    return data;
+    return { ok: true, data };
   } catch (err: any) {
     const message = err?.response?.data?.message || err?.message || 'Submit survey failed';
-    throw new Error(message);
+    return { ok: false, message };
   }
 };
+
+const getUserSurvey = async (user: string) => {
+  try {
+    const { data } = await api.get(`/user/${user}`);
+    return { ok: true, data: data.data };
+  } catch (err: any) {
+    const message = err?.response?.data?.message || err?.message || 'Get survey failed';
+    return { ok: false, message };
+  }
+}
 
 export default submitSurvey;

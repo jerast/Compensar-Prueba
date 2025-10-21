@@ -7,7 +7,13 @@ type User = {
   phone?: string;
 };
 
-type Survey = string | null;
+type Survey = {
+  fecha: string;
+  'Pregunta 1': string;
+  'Pregunta 2': string;
+  'Pregunta 3': string;
+  'Pregunta 4': string;
+};
 
 type AppState = {
   user: User | null;
@@ -21,7 +27,13 @@ const useAppStore = create<AppState>()(
   persist(
     (set) => ({
       user: null,
-      survey: null,
+      survey: {
+        fecha: '',
+        'Pregunta 1': '',
+        'Pregunta 2': '',
+        'Pregunta 3': '',
+        'Pregunta 4': ''
+      },
 
       login: (payload: User) => set(() => ({ user: payload })),
       logout: () => set(() => ({ user: null })),
