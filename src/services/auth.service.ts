@@ -1,4 +1,4 @@
-import api from '@services/axios.config';
+import api from '@config/axios.config';
 
 type LoginPayload = {
   emailOrUser: string;
